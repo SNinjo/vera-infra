@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drive-service
+  namespace: vera
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: drive-service
+  template:
+    metadata:
+      labels:
+        app: drive-service
+    spec:
+      containers:
+        - name: drive
+          image: harbor.vera.sninjo.com/vera/drive-service:v1.0.0
+          envFrom:
+            - configMapRef:
+                name: drive-service
+      imagePullSecrets:
+        - name: harbor-pull

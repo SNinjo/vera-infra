@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: identity-service
+  namespace: vera
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: identity-service
+  template:
+    metadata:
+      labels:
+        app: identity-service
+    spec:
+      containers:
+        - name: identity
+          image: harbor.vera.sninjo.com/vera/identity-service:v1.0.0
+          envFrom:
+            - configMapRef:
+                name: identity-service
+      imagePullSecrets:
+        - name: harbor-pull

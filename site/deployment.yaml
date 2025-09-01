@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: site
+  namespace: vera
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: site
+  template:
+    metadata:
+      labels:
+        app: site
+    spec:
+      containers:
+        - name: site
+          image: harbor.vera.sninjo.com/vera/site:v1.0.0
+      imagePullSecrets:
+        - name: harbor-pull
