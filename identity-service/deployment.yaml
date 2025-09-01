@@ -6,16 +6,18 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels: { app: vera-identity }
+    matchLabels:
+      app: vera-identity
   template:
     metadata:
-      labels: { app: vera-identity }
+      labels:
+        app: vera-identity
     spec:
       containers:
         - name: identity
           image: harbor.local/vera/vera-identity:v1.0.0
           envFrom:
             - configMapRef:
-              name: vera-identity
+                name: vera-identity
       imagePullSecrets:
         - name: harbor-pull
