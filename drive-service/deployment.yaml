@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vera-drive
+  namespace: vera
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vera-drive
+  template:
+    metadata:
+      labels:
+        app: vera-drive
+    spec:
+      containers:
+        - name: drive
+          image: harbor.local/vera/vera-drive:v1.0.0
+          envFrom:
+            - configMapRef:
+                name: vera-drive
+      imagePullSecrets:
+        - name: harbor-pull
