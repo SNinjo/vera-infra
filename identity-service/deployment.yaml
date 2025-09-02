@@ -21,12 +21,12 @@ spec:
                 name: vera-identity
       imagePullSecrets:
         - name: harbor-pull
-      livenessProbe:
+      readinessProbe:
         httpGet:
           path: /healthz
           port: 8080
           scheme: HTTP
-        initialDelaySeconds: 30
-        periodSeconds: 10
+        initialDelaySeconds: 5
+        periodSeconds: 5
         timeoutSeconds: 2
         failureThreshold: 3
