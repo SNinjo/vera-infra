@@ -7,4 +7,4 @@ spec:
   selector: { app: vera-site }
   ports:
     - port: 80
-      targetPort: 8080
+      targetPort: 80
